@@ -1,4 +1,4 @@
-import { Salary, createEmptySalary } from "./salary.js";
+import { Salary, createEmptySalary, populateTaxes } from "./salary.js";
 
 const grossInput = document.getElementById("gross-input") as HTMLInputElement | null;
 const pensionInput = document.getElementById("pension-input") as HTMLInputElement | null;
@@ -36,20 +36,9 @@ function updateOutputField(element: HTMLParagraphElement | null, amount: number)
 
 function getSalary(): Salary {
   let salary = createEmptySalary();
-
   salary.gross = getInputAmount(grossInput);
   salary.pension = salary.gross * 0.01 * getInputAmount(pensionInput);
-
-  let adjusted_gross = salary.gross - salary.pension;
-
-  salary.income_tax = (adjusted_gross - 12500) * 0.2;
-  salary.nat_insurance = (adjusted_gross - 12500) * 0.12;
-  salary.student_loan = (adjusted_gross - 20195) * 0.09;
-
-  salary.net =
-    salary.gross - salary.income_tax - salary.nat_insurance - salary.student_loan - salary.pension;
-
-  return salary;
+  return populateTaxes(salary);
 }
 
 function getInputAmount(element: HTMLInputElement | null) {
