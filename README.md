@@ -21,6 +21,6 @@ I have loads of ideas on what I'd like to add to this, so stay tuned for added f
 
 ## Current Limitations
 
-- Not accurate for anything over £50,0000 (apologies to all devs)
+- Not accurate for anything over £100,0000 (e.g., no support for personal allowance clawback)
 - Assumes you hold a plan 1 student loan
 - Assumes you have a regular tax code (1257L)
