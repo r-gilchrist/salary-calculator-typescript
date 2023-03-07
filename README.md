@@ -1,2 +1,18 @@
-# salary-calculator-typescript
-A simple web application to work out your monthly salary breakdown.
+# Salary Calculator
+
+A simple web application to work out your monthly salary breakdown. Built using Typescript, html, css and node.js.
+
+![image](https://user-images.githubusercontent.com/56300878/223563034-c6f2635c-2fa4-4f91-b76e-342a1bee0ecf.png)
+
+I have loads of ideas on what I'd like to add to this, so stay tuned for added functionality/support!
+
+## Features
+
+- Adjustable gross salary and pension percentage inputs
+- Real-time calculation updates as you type
+
+## Current Limitations
+
+- Not accurate for anything over £50,0000
+- Assumes you hold a plan 1 student loan
+- Assumes you have a regular tax code (1257L)
