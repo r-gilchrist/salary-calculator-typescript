@@ -1,0 +1,8 @@
+.input-text, .output-text, .output-value {
+    display: inline-block;
+    margin: 0;
+}
+
+.input-field, .output-field {
+    margin: 5px;
+}
