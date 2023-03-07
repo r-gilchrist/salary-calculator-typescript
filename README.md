@@ -11,8 +11,16 @@ I have loads of ideas on what I'd like to add to this, so stay tuned for added f
 - Adjustable gross salary and pension percentage inputs
 - Real-time calculation updates as you type
 
+## How to run
+
+1. Clone the repository
+2. Navigate to the root directory
+3. `npm install`
+4. `npm start`
+5. Navigate to `localhost:5500/index.html`
+
 ## Current Limitations
 
-- Not accurate for anything over £50,0000
+- Not accurate for anything over £50,0000 (apologies to all devs)
 - Assumes you hold a plan 1 student loan
 - Assumes you have a regular tax code (1257L)
