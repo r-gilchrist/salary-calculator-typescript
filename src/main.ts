@@ -7,46 +7,41 @@ const pensionOutput = document.getElementById("pension-output") as HTMLParagraph
 const netOutput = document.getElementById("net-output") as HTMLParagraphElement | null;
 
 grossInput?.addEventListener("keyup", (e) => {
-  let salary = createNewSalary();
+  let salary = getSalary();
   updateOutputFields(salary);
 });
 
 pensionInput?.addEventListener("keyup", (e) => {
-  let salary = createNewSalary();
+  let salary = getSalary();
   updateOutputFields(salary);
 });
 
 function updateOutputFields(salary: Salary) {
-  if (grossOutput != null) {
-    grossOutput.textContent = `£${salary.gross.toFixed(2)}`;
-  }
-  if (pensionOutput != null) {
-    pensionOutput.textContent = `£${salary.pension.toFixed(2)}`;
-  }
-  if (netOutput != null) {
-    netOutput.textContent = `£${salary.net.toFixed(2)}`;
-  }
+  updateOutputField(grossOutput, salary.gross);
+  updateOutputField(pensionOutput, salary.pension);
+  updateOutputField(netOutput, salary.net);
 }
 
-function createNewSalary(): Salary {
+function updateOutputField(element: HTMLParagraphElement | null, amount: Number) {
+  if (element == null) return;
+  element.textContent = `£${amount.toFixed(2)}`;
+}
+
+function getSalary(): Salary {
   let salary = createEmptySalary();
 
-  if (grossInput != null) {
-    salary.gross = Number(grossInput.value) / 12;
-    if (isNaN(salary.gross)) {
-      salary.gross = 0;
-    }
-  }
-  if (pensionInput != null) {
-    salary.pension = salary.gross * 0.01 * Number(pensionInput.value);
-    if (isNaN(salary.pension)) {
-      salary.pension = 0;
-    }
-  }
-
+  salary.gross = getInputAmount(grossInput) / 12;
+  salary.pension = salary.gross * 0.01 * getInputAmount(pensionInput);
   salary.net = salary.gross - salary.pension;
 
   return salary;
+}
+
+function getInputAmount(element: HTMLInputElement | null) {
+  if (element == null) return 0;
+  let amount = Number(element.value);
+  if (isNaN(amount)) return 0;
+  return amount;
 }
 
 export {};
