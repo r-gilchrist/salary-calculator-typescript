@@ -59,12 +59,13 @@ export function populateTaxes(salary: Salary): Salary {
 
 function calculateTax(amount: number, tax: Tax): number {
   let total: number = 0;
+
   if (amount < tax.basic_threshold) return total;
   total += (amount - tax.basic_threshold) * 0.01 * tax.basic_rate;
-  console.log("Lower is", total);
+
   if (amount < tax.higher_threshold) return total;
   total += 0.01 * (amount - tax.higher_threshold) * (tax.higher_rate - tax.basic_rate);
-  console.log("Higher is", total);
+
   return total;
 }
 
