@@ -1,23 +1,33 @@
+import { Salary } from "./types/salary";
+
 const grossInput = document.getElementById("gross-input") as HTMLInputElement | null;
 const grossOutput = document.getElementById("gross-output") as HTMLParagraphElement | null;
 
 console.log(grossInput);
 
 grossInput?.addEventListener("keyup", (e) => {
-  updateGrossMonhtly();
+  let salary = createNewSalary();
+  updateGrossMonhtly(salary);
 });
 
-function updateGrossMonhtly() {
-  if (grossInput == null || grossOutput == null) return;
-  let inputAmount = Number(grossInput.value);
-  if (isNaN(inputAmount)) {
-    inputAmount = 0;
+function updateGrossMonhtly(salary: Salary) {
+  if (grossOutput == null) return;
+  grossOutput.textContent = `£${salary.gross.toFixed(2)}`;
+}
+
+function createNewSalary(): Salary {
+  let salary = {
+    gross: 0,
+  };
+
+  if (grossInput != null) {
+    salary.gross = Number(grossInput.value) / 12;
+    if (isNaN(salary.gross)) {
+      salary.gross = 0;
+    }
   }
-  console.log(grossInput);
 
-  let monthlyGross = inputAmount / 12;
-
-  grossOutput.textContent = `£${monthlyGross.toFixed(2)}`;
+  return salary;
 }
 
 export {};
