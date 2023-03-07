@@ -1,9 +1,7 @@
-import { Salary } from "./types/salary";
+import { Salary, createEmptySalary } from "./types/salary.js";
 
 const grossInput = document.getElementById("gross-input") as HTMLInputElement | null;
 const grossOutput = document.getElementById("gross-output") as HTMLParagraphElement | null;
-
-console.log(grossInput);
 
 grossInput?.addEventListener("keyup", (e) => {
   let salary = createNewSalary();
@@ -16,9 +14,7 @@ function updateGrossMonhtly(salary: Salary) {
 }
 
 function createNewSalary(): Salary {
-  let salary = {
-    gross: 0,
-  };
+  let salary = createEmptySalary();
 
   if (grossInput != null) {
     salary.gross = Number(grossInput.value) / 12;
