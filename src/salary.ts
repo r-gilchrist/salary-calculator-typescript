@@ -5,6 +5,7 @@ export type Salary = {
   income_tax: number;
   student_loan: number;
   net: number;
+  student_loan_type: string;
 };
 
 type Tax = {
@@ -12,11 +13,6 @@ type Tax = {
   basic_threshold: number;
   higher_rate: number;
   higher_threshold: number;
-};
-
-type StudentLoan = {
-  rate: number;
-  threshold: number;
 };
 
 export function createEmptySalary(): Salary {
@@ -27,6 +23,7 @@ export function createEmptySalary(): Salary {
     income_tax: 0,
     student_loan: 0,
     net: 0,
+    student_loan_type: "no_loan",
   };
 }
 
@@ -47,10 +44,7 @@ export function populateTaxes(salary: Salary): Salary {
     higher_threshold: 50270,
   });
 
-  salary.student_loan = calculateStudentLoan(after_sacrifice, {
-    rate: 9,
-    threshold: 20195,
-  });
+  salary.student_loan = calculateStudentLoan(after_sacrifice, salary.student_loan_type);
 
   salary.net = after_sacrifice - salary.income_tax - salary.nat_insurance - salary.student_loan;
 
@@ -69,7 +63,18 @@ function calculateTax(amount: number, tax: Tax): number {
   return total;
 }
 
-function calculateStudentLoan(amount: number, student_loan: StudentLoan): number {
-  if (amount < student_loan.threshold) return 0;
-  return 12 * Math.floor((0.01 * (amount - student_loan.threshold) * student_loan.rate) / 12);
+function calculateStudentLoan(amount: number, loan_type: string): number {
+  let threshold = 20195;
+  let rate = 9;
+
+  switch (loan_type) {
+    case "no_loan":
+      rate = 0;
+    case "plan_2":
+      threshold = 27295;
+  }
+
+  if (amount < threshold) return 0;
+
+  return 12 * Math.floor((0.01 * (amount - threshold) * rate) / 12);
 }

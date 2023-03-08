@@ -2,6 +2,7 @@ import { Salary, createEmptySalary, populateTaxes } from "./salary.js";
 
 const grossInput = document.getElementById("gross-input") as HTMLInputElement | null;
 const pensionInput = document.getElementById("pension-input") as HTMLInputElement | null;
+const studentInput = document.getElementById("student-loan-type") as HTMLSelectElement | null;
 
 const grossOutput = document.getElementById("gross-output") as HTMLParagraphElement | null;
 const incomeTaxOutput = document.getElementById("tax-output") as HTMLParagraphElement | null;
@@ -16,6 +17,11 @@ grossInput?.addEventListener("keyup", (e) => {
 });
 
 pensionInput?.addEventListener("keyup", (e) => {
+  let salary = getSalary();
+  updateOutputFields(salary);
+});
+
+studentInput?.addEventListener("change", (e) => {
   let salary = getSalary();
   updateOutputFields(salary);
 });
@@ -38,6 +44,9 @@ function getSalary(): Salary {
   let salary = createEmptySalary();
   salary.gross = getInputAmount(grossInput);
   salary.pension = salary.gross * 0.01 * getInputAmount(pensionInput);
+  if (studentInput != null) {
+    salary.student_loan_type = studentInput.value;
+  }
   return populateTaxes(salary);
 }
 
