@@ -6,6 +6,7 @@ export type Salary = {
   student_loan: number;
   net: number;
   student_loan_type: string;
+  benefits_in_kind: number;
 };
 
 type Tax = {
@@ -24,13 +25,14 @@ export function createEmptySalary(): Salary {
     student_loan: 0,
     net: 0,
     student_loan_type: "no_loan",
+    benefits_in_kind: 0,
   };
 }
 
 export function populateTaxes(salary: Salary): Salary {
   let after_sacrifice = salary.gross - salary.pension;
 
-  salary.income_tax = calculateTax(after_sacrifice, {
+  salary.income_tax = calculateTax(after_sacrifice + salary.benefits_in_kind, {
     basic_rate: 20,
     basic_threshold: 12570,
     higher_rate: 40,
