@@ -2,14 +2,15 @@
 
 A simple web application to work out your monthly salary breakdown. Built using Typescript, html, css and node.js.
 
-![image](https://user-images.githubusercontent.com/56300878/223563034-c6f2635c-2fa4-4f91-b76e-342a1bee0ecf.png)
+![image](https://user-images.githubusercontent.com/56300878/223665035-7586798d-364a-4a3f-ad7a-ea27b6d9fc1b.png)
 
 I have loads of ideas on what I'd like to add to this, so stay tuned for added functionality/support!
 
 ## Features
 
 - Adjustable gross salary and pension percentage inputs
-- Real-time calculation updates as you type
+- Student loan type selection (plan 1, plan 2 or no loan)
+- Real-time updates as you change the input
 
 ## How to run
 
@@ -22,5 +23,5 @@ I have loads of ideas on what I'd like to add to this, so stay tuned for added f
 ## Current Limitations
 
 - Not accurate for anything over £100,0000 (e.g., no support for personal allowance clawback)
-- Assumes you hold a plan 1 student loan
+- No postgraduate loan support
 - Assumes you have a regular tax code (1257L)
