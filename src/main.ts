@@ -11,12 +11,12 @@ const studentOutput = document.getElementById("student-output") as HTMLParagraph
 const pensionOutput = document.getElementById("pension-output") as HTMLParagraphElement | null;
 const netOutput = document.getElementById("net-output") as HTMLParagraphElement | null;
 
-grossInput?.addEventListener("keyup", (e) => {
+grossInput?.addEventListener("change", (e) => {
   let salary = getSalary();
   updateOutputFields(salary);
 });
 
-pensionInput?.addEventListener("keyup", (e) => {
+pensionInput?.addEventListener("change", (e) => {
   let salary = getSalary();
   updateOutputFields(salary);
 });
